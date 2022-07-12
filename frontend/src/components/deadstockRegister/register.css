@@ -1,0 +1,178 @@
+.main-register {
+  max-height: 100vh;
+  max-width: 100vw;
+  margin: 0px;
+  overflow: hidden;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(50%, #dfdddd),
+    color-stop(50%, #4dd6b6)
+  );
+  background: linear-gradient(to right, #dfdddd 50%, #4dd6b6 50%);
+}
+.main-register .register-contain {
+  height: 85vh;
+  width: 80%;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(rgba(255, 255, 255, 0.7)),
+    to(rgba(236, 236, 236, 0.4))
+  );
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(236, 236, 236, 0.4)
+  );
+  border-radius: 1rem;
+  margin: 3rem auto;
+  -webkit-box-shadow: 0.5rem 0.5rem 2rem -1rem #3a3939;
+  box-shadow: 0.5rem 0.5rem 2rem -1rem #3a3939;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.main-register .register-contain .link {
+  text-decoration: none;
+  color: rgb(13, 103, 131);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.main-register .register-contain .link:hover {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  color: gray;
+}
+
+.main-register .register-contain .left-side,
+.main-register .register-contain .right-side {
+  margin: 2rem 2rem;
+  -webkit-box-shadow: 0.5rem 0.5rem 2rem -1rem #3a3939;
+  box-shadow: 0.5rem 0.5rem 2rem -1rem #3a3939;
+  height: 95%;
+  width: 100%;
+}
+
+.main-register .register-contain .left-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.main-register .register-contain .left-side .img-class {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0rem;
+}
+
+.main-register .register-contain .left-side .img-class #img-id {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.main-register .register-contain .left-side input {
+  display: block;
+  border: none;
+  height: 2rem;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 1.5rem;
+  padding: 0.2rem 1rem;
+  font-size: small;
+  color: gray;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.main-register .register-contain .left-side input:focus {
+  outline: none;
+  border: none;
+}
+
+.main-register .register-contain .left-side input:hover {
+  outline: 0.5px solid #4dd6b6;
+  -webkit-box-shadow: 2px 2px 9px -2px #4dd6b6;
+  box-shadow: 2px 2px 9px -2px #4dd6b6;
+}
+
+.main-register .register-contain .left-side label {
+  display: block;
+  text-align: left;
+  width: 78%;
+  margin: auto;
+  font-size: small;
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+.main-register .register-contain .left-side #sub_butt {
+  width: 80%;
+  background: #4dd6b6;
+  color: black;
+  border: none;
+  position: relative;
+  left: 11%;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.main-register .register-contain .left-side #sub_butt:hover {
+  -webkit-box-shadow: 4px 3px 9px -1px gray;
+  box-shadow: 4px 3px 9px -1px gray;
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+}
+
+.main-register .register-contain .left-side .link {
+  text-decoration: none;
+  margin-top: 0.2rem;
+  color: rgb(43, 149, 179);
+  position: relative;
+  left: 40%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.main-register .register-contain .left-side .link:hover {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  color: rgb(16, 20, 140);
+}
+
+.main-register .register-contain .right-side .welcomeNote h1 {
+  margin-left: 1rem;
+  color: black;
+  float: left;
+  margin-bottom: 2.5rem;
+}
+
+.main-register .register-contain .right-side .welcomeImg {
+  height: 100%;
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.main-register .register-contain .right-side .welcomeImg #wel-img-id {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}

@@ -1,0 +1,19 @@
+.chart {
+    background-color: antiquewhite;
+   
+    position: fixed;
+    width: 78%;
+    height: 65%;
+    left: 10%;
+    top: 40%;
+    margin-left: 7%;
+        -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  }
+  
+  .chartTitle {
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 25px;
+  
+  }
