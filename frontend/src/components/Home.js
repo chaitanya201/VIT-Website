@@ -14,7 +14,7 @@ export default function Home() {
   };
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between" data-testid = "home-component">
         <div className="justify-between   ">
           <ul className=" hidden w-full md:flex bg-purple-500 justify-between ">
             <li className="p-4">

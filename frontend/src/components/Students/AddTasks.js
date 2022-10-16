@@ -33,7 +33,6 @@ export default function AddTasks() {
         `http://localhost:5000/projects/get-students-approved-projects?studentId=${user ? user._id : "123"}`,
         { headers }
       );
-      // // // // // console.log("approved ", response.data);
       if (response.data.status === "failed") {
         setAlertMsg(response.data.msg);
       } else {
@@ -43,7 +42,8 @@ export default function AddTasks() {
       setAlertMsg("Server Error. Unable to get projects");
     }
   };
-
+  console.log("approved ", approvedProjects);
+  
   useEffect(() => {
     getAllApprovedProjects();
   }, []);
@@ -421,7 +421,7 @@ export default function AddTasks() {
                 );
               })}
             </div> */}
-          <div>
+          <div data-testid = "demo">
             <DataGrid
               columns={columns}
               rows={approvedProjects}

@@ -155,7 +155,7 @@ export default function CreateProject() {
 
   // // // console.log("teammate type ", typeof teamMate1);
   return (
-    <div className=" bg-slate-50    ">
+    <div className=" bg-slate-50    " data-testid="create-project">
       {alertMsg ? (
         <ClosingAlert msg={alertMsg} alertColor={alertColor} />
       ) : (

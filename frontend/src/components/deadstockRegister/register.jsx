@@ -50,7 +50,7 @@ export default function Register () {
   };
 
   return (
-    <div className="main-register">
+    <div className="main-register" data-testid='deadStock-register'>
       <div className="register-contain">
         <div className="left-side">
           <div className="img-class">

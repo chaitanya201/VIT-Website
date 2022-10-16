@@ -6,6 +6,14 @@ import Alert from "./Alert";
 import { useDispatch } from "react-redux";
 import { changeUser } from "../../store/reducers/user";
 export default function Login() {
+  
+  const isEmail = (emailAddress) => {
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (emailAddress.match(regex)) return true;
+    else return false;
+  };
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +29,10 @@ export default function Login() {
   const dispatch = useDispatch();
   const onFormSubmit = async (event) => {
     event.preventDefault();
+    if (!isEmail(email)) {
+      setAlertMsg("Invalid Email");
+      return;
+    }
     const user = {
       email: email,
       password: password,
@@ -28,7 +40,7 @@ export default function Login() {
     const response = await axios.post(
       "http://localhost:5000/student/login",
       user,
-      { withCredentials:true, headers:{"Access-Control-Allow-Origin": "*" }}
+      { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
     );
 
     if (response.data.status === "success") {
@@ -64,13 +76,14 @@ export default function Login() {
       ) : (
         <div> </div>
       )}
-      <div className="h-screen flex bg-gray-100">
+      <div className="h-screen flex bg-gray-100" data-testid="student-login">
         <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
           <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
             Login 🔐
           </h1>
           <form method="post" onSubmit={onFormSubmit}>
             <input
+              data-test-id="email"
               type="email"
               name="email"
               placeholder="Email"
@@ -79,6 +92,7 @@ export default function Login() {
             />
             <br />
             <input
+              data-test-id="password"
               type="password"
               name="password"
               placeholder="Password"
@@ -87,18 +101,17 @@ export default function Login() {
             />
             <div className="flex justify-center items-center mt-6">
               <input
+                data-test-id="submit"
                 type="submit"
                 value="Login"
                 className="w-full px-6 py-2 mt-4 text-white bg-emerald-600 rounded-lg hover:bg-blue-900"
               />
             </div>
           </form>
-          <div >
-        
-          <Link to={"/student/forget-password"}>forget password</Link>
+          <div>
+            <Link to={"/student/forget-password"}>forget password</Link>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );

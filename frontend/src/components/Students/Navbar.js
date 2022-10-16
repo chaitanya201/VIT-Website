@@ -39,7 +39,7 @@ export default function Navbar() {
               )}
               {user ? (
                 <li className="p-4">
-                  <Link to={`/${user.position}/home`}>{user.name}</Link>
+                  <Link to={`/${user.position}/home`} data-testid = "name">{user.name}</Link>
                 </li>
               ) : (
                 <li></li>

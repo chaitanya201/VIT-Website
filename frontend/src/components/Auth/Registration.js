@@ -121,7 +121,7 @@ export default function Register() {
       ) : (
         <div> </div>
       )}
-      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
+      <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16" data-testid="student-register">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Register
         </h1>

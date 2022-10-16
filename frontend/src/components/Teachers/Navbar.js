@@ -8,7 +8,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   return (
     <div className="flex space-x-10">
-      <h1><Link to={'/student/home'}>{cookies.teacher.name}</Link></h1>
+      <h1><Link to={'/student/home'} data-testid="name">{cookies.teacher.name}</Link></h1>
       <ul className="flex space-x-2">
         <li>
         <Link to={'/teacher/show-pending-projects'}>Show Pending Projects</Link>

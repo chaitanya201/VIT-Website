@@ -43,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main-login">
+    <div className="main-login" data-testid="deadStock-login">
       <div className="login-contain">
         <div className="left-side">
           <div className="img-class">
