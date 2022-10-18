@@ -36,6 +36,8 @@ afterAll(() => server.close());
 
 // test cases.
 describe("checking student login component", () => {
+
+
   test("should give error saying email is invalid", async () => {
     render(
       <Provider store={store}>
@@ -53,9 +55,13 @@ describe("checking student login component", () => {
     fireEvent.submit(screen.getByTestId("student-login-form"));
     
     // this line is showing in the red part but actually it is working.
-    await waitFor(() => expect(screen.getByTestId("alert")).toBeInTheDocument())
+    // await waitFor(() => expect(screen.getByTestId("alert")).toBeInTheDocument())
+
+    // Below code is alternative to above waitFor.
+    await waitFor(() => screen.findByTestId("alert"))
     
   });
+  
   test("should give login user", async () => {
     render(
       <Provider store={store}>
@@ -74,7 +80,10 @@ describe("checking student login component", () => {
     
     // this line is showing in the red part but actually it is working.
     // i am checking that error is not display instead the other div is being displayed.
-    await waitFor(() => expect(screen.getByTestId("non")).toBeInTheDocument())
+    // await waitFor(() => expect(screen.getByTestId("non")).toBeInTheDocument())
+
+    // this waitFor is alternative for above code.
+    await waitFor(() => screen.findByTestId("non"))
     
   });
 });
