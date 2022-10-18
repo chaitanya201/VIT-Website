@@ -59,7 +59,6 @@ function App() {
   // // // // // console.log(!user, "...");
   // const location = useLocation()
   console.log("user is =  ",typeof cookies.user);
-  console.log("user is =  ", cookies.user.name);
   // console.log("path", location.pathname)
 
   useEffect(() => {

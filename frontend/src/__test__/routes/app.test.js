@@ -120,7 +120,7 @@ test("should show deadStock login component", () => {
   expect(screen.getByTestId("deadStock-login")).toBeInTheDocument();
 });
 
-// create project route
+// create project route for unauthorized student should show login component.
 
 test("should not show create project component", () => {
   window.history.pushState({}, "", "/student/create-project");

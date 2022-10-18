@@ -6,7 +6,6 @@ import Alert from "./Alert";
 import { useDispatch } from "react-redux";
 import { changeUser } from "../../store/reducers/user";
 export default function Login() {
-  
   const isEmail = (emailAddress) => {
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -72,18 +71,24 @@ export default function Login() {
   return (
     <div>
       {alertMsg ? (
-        <Alert msg={alertMsg} alertColor={alterMsgColor} />
+        <div data-testid="alert">
+          <Alert  msg={alertMsg} alertColor={alterMsgColor} />
+        </div>
       ) : (
-        <div> </div>
+        <div data-testid="non"> </div>
       )}
       <div className="h-screen flex bg-gray-100" data-testid="student-login">
         <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
           <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
             Login 🔐
           </h1>
-          <form method="post" onSubmit={onFormSubmit}>
+          <form
+            method="post"
+            onSubmit={onFormSubmit}
+            data-testid="student-login-form"
+          >
             <input
-              data-test-id="email"
+              data-testid="student-email"
               type="email"
               name="email"
               placeholder="Email"
@@ -92,7 +97,7 @@ export default function Login() {
             />
             <br />
             <input
-              data-test-id="password"
+              data-testid="student-password"
               type="password"
               name="password"
               placeholder="Password"
@@ -101,7 +106,7 @@ export default function Login() {
             />
             <div className="flex justify-center items-center mt-6">
               <input
-                data-test-id="submit"
+                data-testid="student-submit"
                 type="submit"
                 value="Login"
                 className="w-full px-6 py-2 mt-4 text-white bg-emerald-600 rounded-lg hover:bg-blue-900"
