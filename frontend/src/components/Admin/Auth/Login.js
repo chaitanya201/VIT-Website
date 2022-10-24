@@ -25,34 +25,39 @@ export default function Login() {
       email: email,
       password: password,
     };
-    const response = await axios.post(
-      "http://localhost:5000/admin/login",
-      user,
-      { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
-    );
-    console.log("res", response);
-    if (response.data.status === "success") {
-      // console.log("data after login is ", response.data);
-      // removeCookie('student')
-      // removeCookie('teacher')
-      // removeCookie('teacherToken')
-      // removeCookie('token')
-      // const expires = new Date(Date.now() + (60*24*3600000))
-      // setCookies('teacher', response.data.teacher , {path:'/', expires, maxAge: 2 * 60 * 60 * 1000})
-      // setCookies('teacherToken', response.data.token , {path:'/',expires, maxAge: 2 * 60 * 60 * 1000})
-      dispatch(
-        changeUser({
-          name: response.data.admin.name,
-          pic: response.data.admin.pic,
-          position: response.data.admin.position,
-          email: response.data.admin.email,
-          _id: response.data.admin._id,
-        })
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/admin/login",
+        user,
+        { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
       );
-      navigate("/admin/home");
-    } else {
-      console.log("failed to login");
-      setAlertMsg("Email or Password is incorrect");
+      console.log("res", response);
+      if (response.data.status === "success") {
+        // console.log("data after login is ", response.data);
+        // removeCookie('student')
+        // removeCookie('teacher')
+        // removeCookie('teacherToken')
+        // removeCookie('token')
+        // const expires = new Date(Date.now() + (60*24*3600000))
+        // setCookies('teacher', response.data.teacher , {path:'/', expires, maxAge: 2 * 60 * 60 * 1000})
+        // setCookies('teacherToken', response.data.token , {path:'/',expires, maxAge: 2 * 60 * 60 * 1000})
+        dispatch(
+          changeUser({
+            name: response.data.admin.name,
+            pic: response.data.admin.pic,
+            position: response.data.admin.position,
+            email: response.data.admin.email,
+            _id: response.data.admin._id,
+          })
+        );
+        navigate("/admin/home");
+      } else {
+        console.log("failed to login");
+        setAlertMsg("Email or Password is incorrect");
+      }
+    } catch (error) {
+      console.log(error)
+      setAlertMsg("Server Error. Try again later.")
     }
   };
 

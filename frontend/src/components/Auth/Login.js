@@ -36,35 +36,33 @@ export default function Login() {
       email: email,
       password: password,
     };
-    const response = await axios.post(
-      "http://localhost:5000/student/login",
-      user,
-      { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
-    );
-
-    if (response.data.status === "success") {
-      console.log("data after login is ", response.data.student);
-      // removeCookie('teacher')
-      // removeCookie('teacherToken')
-      // removeCookie('admin')
-      // removeCookie('adminToken')
-      // localStorage.setItem('studentname',JSON.stringify(response.data.student))
-      // const expires = new Date(Date.now() + (60*24*3600000))
-      // setCookies('student', response.data.student , {path:'/', expires, maxAge: 2 * 60 * 60 * 1000})
-      // setCookies('token', response.data.token , {path:'/',expires, maxAge: 2 * 60 * 60 * 1000})
-      dispatch(
-        changeUser({
-          name: response.data.student.name,
-          pic: response.data.student.pic,
-          position: response.data.student.position,
-          email: response.data.student.email,
-          _id: response.data.student._id,
-        })
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/student/login",
+        user,
+        { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
       );
-      navigate("/student/home");
-    } else {
-      console.log("failed to login");
-      setAlertMsg("Email or Password is incorrect");
+  
+      if (response.data.status === "success") {
+        console.log("data after login is ", response.data.student);
+        
+        dispatch(
+          changeUser({
+            name: response.data.student.name,
+            pic: response.data.student.pic,
+            position: response.data.student.position,
+            email: response.data.student.email,
+            _id: response.data.student._id,
+          })
+        );
+        navigate("/student/home");
+      } else {
+        console.log("failed to login");
+        setAlertMsg("Email or Password is incorrect");
+      }
+    } catch (error) {
+      console.log(error);
+      setAlertMsg("Server Error. Try again later.")
     }
   };
 
