@@ -133,9 +133,9 @@ const login = async (req, res) => {
 
   let isValid = false;
   try {
-    console.log("started checking")
+    //console.log("started checking")
     isValid = await bcrypt.compare(req.body.password, teacher.password);
-    console.log("ended checking");
+    //console.log("ended checking");
   } catch (error) {
     // console("error while validating password");
     return res.send({ status: "failed", msg: "server error" });
@@ -154,7 +154,7 @@ const login = async (req, res) => {
     // console("login successful");
     res.send({ status: "success", msg: "Login successful", token, teacher });
   } else {
-    console.log("password is wrong");
+    //console.log("password is wrong");
     return res.send({
       status: "failed",
       msg: "Email or Password is incorrect",
