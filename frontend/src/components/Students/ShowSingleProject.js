@@ -19,6 +19,7 @@ export default function ShowSingleProject() {
   const [alertColor, setAlertColor] = useState("red");
   const user = useSelector((state) => state.user.user);
   const [alertMsg, setAlertMsg] = useState(null);
+  console.log("app location data = ", location.state)
   try {
     var { project } = location.state;
   } catch (error) {
@@ -26,29 +27,6 @@ export default function ShowSingleProject() {
     // setAlertMsg("Please Visit this page through valid path only. Dont visit this page directly.")
     // return <div>Please Visit this page through valid path only. Dont visit this page directly.</div>
   }
-
-  /**
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-
-
-
-      See project is breaking at line 17 
-
-
-
-
-
-
-
-
-
-   */
 
   const [ppt, setPpt] = useState("");
 
@@ -58,17 +36,20 @@ export default function ShowSingleProject() {
   // const [task, setTask] = useState("");
   const [cookies] = useCookies();
 
-  const [pptColor, setPptColor] = useState(project.ppt ? "green-400" : "white");
+  const [pptColor, setPptColor] = useState(
+    project && project.ppt ? "green-400" : "white"
+  );
   const [reportColor, setReportColor] = useState(
-    project.report ? "green-400" : "white"
+    project && project.report ? "green-400" : "white"
   );
   const [litReviewColor, setLitReviewColor] = useState(
-    project.literatureReview ? "green-400" : "white"
+    project && project.literatureReview ? "green-400" : "white"
   );
 
+  // if no project is selected then show warning on page.
   if (!project) {
     return (
-      <div className="bg-red-500">
+      <div className="bg-red-500" data-testid = 'error'>
         Please visit this place through proper order only.
       </div>
     );
@@ -315,7 +296,7 @@ export default function ShowSingleProject() {
         )}
       </div>
       {updatedProject ? (
-        <div className="bg-slate-200">
+        <div className="bg-slate-200" data-testid="single-project">
           <div className="text-center">
             <div className="flex-col space-x-1 py-9 px-9 bg-white m-20 rounded-lg shadow-lg overflow-auto mt-0">
               <label className="uppercase font-bold text-2xl">Title</label>
@@ -490,7 +471,7 @@ export default function ShowSingleProject() {
           </div>
         </div>
       ) : (
-        <span>No Project found</span>
+        <span data-testid="not-found-single-project">No Project found</span>
       )}
 
       {/* <div className="bg-slate-200">

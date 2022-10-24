@@ -421,7 +421,7 @@ export default function AddTasks() {
                 );
               })}
             </div> */}
-          <div data-testid = "demo">
+          <div data-testid = "table">
             <DataGrid
               columns={columns}
               rows={approvedProjects}
@@ -433,7 +433,7 @@ export default function AddTasks() {
           </div>
         </div>
       ) : (
-        <div>No Projects Found  Create new project or select proper fields.</div>
+        <div data-testid="no-projects-found">No Projects Found  Create new project or select proper fields.</div>
       )}
     </div>
   );
