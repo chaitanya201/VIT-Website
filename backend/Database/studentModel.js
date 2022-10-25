@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const url =
   "mongodb+srv://chaitanya:1234@vitdata.pe0psmh.mongodb.net/Data?retryWrites=true&w=majority";
   // mongodb://mongodb-img/VIT_Database
-mongoose.connect('mongodb://localhost:27017/SDP', {
+mongoose.connect('mongodb://mongodb-img/VIT_Database', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then().catch();
