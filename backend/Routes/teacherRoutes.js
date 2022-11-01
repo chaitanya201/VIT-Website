@@ -750,10 +750,10 @@ const forgetPassword = async (req, res) => {
 
 // get project
 const getProjects = async (req, res) => {
-  console.log("in get projects");
-  console.log(req.query);
+  // console.log("in get projects");
+  // console.log(req.query);
   if (!req.query.query) {
-    console.log("empty query", query);
+    // console.log("empty query", query);
     return res.send({ status: "failed", msg: "Empty Query." });
   }
 
@@ -769,8 +769,8 @@ const getProjects = async (req, res) => {
     });
     
   } catch (error) {
-    console.log("Error while finding student.");
-    console.log(error)
+    // console.log("Error while finding student.");
+    // console.log(error)
     return res.send({status:"failed", msg:error.message})
   }
 
@@ -786,19 +786,19 @@ const getProjects = async (req, res) => {
       })
       .populate("students");
     if (result && result.length > 0) {
-      console.log("result = ", result);
+      // console.log("result = ", result);
       return res.send({
         status: "success",
         msg: "Data found",
         projects: result,
       });
     }
-    console.log("result not found");
-    console.log(result);
+    // console.log("result not found");
+    // console.log(result);
     return res.send({ status: "success", projects: result });
   } catch (error) {
-    console.log("error while finding ");
-    console.log(error);
+    // console.log("error while finding ");
+    // console.log(error);
     return res.send({ status: "failed", msg: error.message });
   }
 };
