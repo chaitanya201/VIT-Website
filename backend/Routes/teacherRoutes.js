@@ -758,31 +758,41 @@ const getProjects = async (req, res) => {
   }
 
   // finding in students.
-  let student
-  const options="imxs"
+  let student;
+  const options = "imxs";
   try {
     student = await studentModel.findOne({
-      $or: [
-        { name: { $regex: `\\b${req.query.query}\\b`, $options:options } },
-        { email: { $regex: `\\b${req.query.query}\\b`, $options:options } },
-      ],
+      $match: {
+        $or: [
+          { name: { $regex: `\\b${req.query.query}\\b`, $options: options } },
+          { email: { $regex: `\\b${req.query.query}\\b`, $options: options } },
+        ],
+      },
     });
-    
   } catch (error) {
     // console.log("Error while finding student.");
     // console.log(error)
-    return res.send({status:"failed", msg:error.message})
+    return res.send({ status: "failed", msg: error.message });
   }
 
   // finding in projects
   try {
     const result = await projectModel
       .find({
-        $or: [
-          { title: { $regex: `\\b${req.query.query}\\b`, $options:options } },
-          { abstract: { $regex: `\\b${req.query.query}\\b`, $options:options } },
-          { "students": {$in:[student ? student._id : null]} },
-        ],
+        $match: {
+          $or: [
+            {
+              title: { $regex: `\\b${req.query.query}\\b`, $options: options },
+            },
+            {
+              abstract: {
+                $regex: `\\b${req.query.query}\\b`,
+                $options: options,
+              },
+            },
+            { students: { $in: [student ? student._id : null] } },
+          ],
+        },
       })
       .populate("students");
     if (result && result.length > 0) {
