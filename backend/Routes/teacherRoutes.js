@@ -142,9 +142,13 @@ const login = async (req, res) => {
   }
 
   if (isValid) {
-    const token = await jwt.sign({ teacherId: teacher._id }, TEACHER_TOKEN_KEY, {
-      expiresIn: "1d",
-    });
+    const token = await jwt.sign(
+      { teacherId: teacher._id },
+      TEACHER_TOKEN_KEY,
+      {
+        expiresIn: "1d",
+      }
+    );
     res.cookie("token", token, { maxAge: 86400000 });
     res.cookie("user", teacher, { maxAge: 86400000 });
     // res.clearCookie('student', {path:"/"})
@@ -512,9 +516,13 @@ const editTeacherProfile = async (req, res) => {
       { new: true }
     );
     if (result) {
-      const token = await jwt.sign({ teacherId: result._id }, TEACHER_TOKEN_KEY, {
-        expiresIn: "1d",
-      });
+      const token = await jwt.sign(
+        { teacherId: result._id },
+        TEACHER_TOKEN_KEY,
+        {
+          expiresIn: "1d",
+        }
+      );
       res.cookie("user", result, { maxAge: 86400000 });
       res.cookie("token", token, { maxAge: 86400000 });
       res.send({
@@ -740,6 +748,61 @@ const forgetPassword = async (req, res) => {
   }
 };
 
+// get project
+const getProjects = async (req, res) => {
+  console.log("in get projects");
+  console.log(req.query);
+  if (!req.query.query) {
+    console.log("empty query", query);
+    return res.send({ status: "failed", msg: "Empty Query." });
+  }
+
+  // finding in students.
+  let student
+  const options="imxs"
+  try {
+    student = await studentModel.findOne({
+      $or: [
+        { name: { $regex: `\\b${req.query.query}\\b`, $options:options } },
+        { email: { $regex: `\\b${req.query.query}\\b`, $options:options } },
+      ],
+    });
+    
+  } catch (error) {
+    console.log("Error while finding student.");
+    console.log(error)
+    return res.send({status:"failed", msg:error.message})
+  }
+
+  // finding in projects
+  try {
+    const result = await projectModel
+      .find({
+        $or: [
+          { title: { $regex: `\\b${req.query.query}\\b`, $options:options } },
+          { abstract: { $regex: `\\b${req.query.query}\\b`, $options:options } },
+          { "students": {$in:[student ? student._id : null]} },
+        ],
+      })
+      .populate("students");
+    if (result && result.length > 0) {
+      console.log("result = ", result);
+      return res.send({
+        status: "success",
+        msg: "Data found",
+        projects: result,
+      });
+    }
+    console.log("result not found");
+    console.log(result);
+    return res.send({ status: "success", projects: result });
+  } catch (error) {
+    console.log("error while finding ");
+    console.log(error);
+    return res.send({ status: "failed", msg: error.message });
+  }
+};
+
 // logout
 
 const logout = (req, res) => {
@@ -756,6 +819,7 @@ router.patch("/forget-password", forgetPassword);
 router.patch("/edit-profile", teacherAuth, editTeacherProfile);
 
 router.get("/get-all-projects", teacherAuth, search);
+router.get("/search", getProjects);
 router.patch("/add-midsem-marks", teacherAuth, addMidSemMarks);
 router.patch("/add-endsem-marks", teacherAuth, addEndSemMarks);
 router.patch("/change-password", teacherAuth, changePassword);

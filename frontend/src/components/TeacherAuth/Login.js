@@ -30,7 +30,7 @@ export default function Login() {
         user,
         { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
       );
-      console.log("res", response);
+      console.log("res =", response.data);
       if (response.data.status === "success") {
         console.log("data after login is ", response.data);
         
@@ -73,6 +73,7 @@ export default function Login() {
               placeholder="Email"
               onChange={onEmailChange}
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              data-testid = "teacher-email"
             />
             <br />
             <input
@@ -81,12 +82,14 @@ export default function Login() {
               placeholder="Password"
               onChange={onPasswordChange}
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              data-testid = "teacher-password"
             />
             <div className="flex justify-center items-center mt-6">
               <input
                 type="submit"
                 value="Login"
                 className="w-full px-6 py-2 mt-4 text-white bg-emerald-600 rounded-lg hover:bg-blue-900"
+                data-testid = "teacher-login-btn"
               />
             </div>
             <div>
