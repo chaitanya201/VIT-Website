@@ -457,7 +457,7 @@ export default function ProjectApprovalRequests() {
   ];
 
   return (
-    <div>
+    <div data-testid='teacher-home'>
       {alertMsg ? (
         <ClosingAlert msg={alertMsg} alertColor={alertColor} />
       ) : (
