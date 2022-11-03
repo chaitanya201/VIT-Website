@@ -1,13 +1,11 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/lib/node";
-import { useCookies } from "react-cookie";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
 import Login from "../../../components/TeacherAuth/Login";
 import store from "../../../store/store";
-import { renderHook } from "@testing-library/react-hooks";
-import { createMemoryHistory } from "history";
+
 const server = setupServer(
   rest.post("http://localhost:5000/teacher/login", (req, res, ctx) => {
     return res(
