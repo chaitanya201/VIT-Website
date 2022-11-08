@@ -42,7 +42,7 @@ export default function AddTasks() {
       setAlertMsg("Server Error. Unable to get projects");
     }
   };
-  console.log("approved ", approvedProjects);
+  // console.log("approved ", approvedProjects);
   
   useEffect(() => {
     getAllApprovedProjects();

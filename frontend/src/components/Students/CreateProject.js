@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
 import Select from "react-select";
@@ -77,6 +77,16 @@ export default function CreateProject() {
     setTitle(e.target.value.trim());
   };
 
+  useEffect(() => {
+    if (abstract.trim().split(" ").length < 5) {
+      setValidAbstract(false);
+      setAlertMsg("less words");
+    } else {
+      setValidAbstract(true);
+      setAlertMsg(null);
+    }
+  }, [abstract]);
+
   const [teamMate1, setTeamMate1] = useState("");
   const [teamMate2, setTeamMate2] = useState("");
   const [teamMate3, setTeamMate3] = useState("");
@@ -150,6 +160,7 @@ export default function CreateProject() {
       // // // console.log("error in server");
       // // // console.log(error)
       setAlertMsg("Server Error");
+      setAlertColor("red");
     }
   };
 
@@ -157,7 +168,7 @@ export default function CreateProject() {
   return (
     <div className=" bg-slate-50    " data-testid="create-project">
       {alertMsg ? (
-        <ClosingAlert msg={alertMsg} alertColor={alertColor} />
+        <div data-testid='alert'><ClosingAlert msg={alertMsg} alertColor={alertColor} /></div>
       ) : (
         <div></div>
       )}
@@ -166,6 +177,7 @@ export default function CreateProject() {
           <h1>Create New Project</h1>
         </div>
         <form
+          data-testid="form"
           method="post"
           onSubmit={onFormSubmit}
           className=" bg-slate-100 border-double shadow-lg rounded-lg relative  "
@@ -188,13 +200,6 @@ export default function CreateProject() {
               cols="50"
               rows="10"
               onChange={(e) => {
-                if (e.target.value.trim().split(" ").length < 5) {
-                  setValidAbstract(false);
-                  setAlertMsg("less words");
-                  return;
-                }
-                setValidAbstract(true);
-                setAlertMsg(null);
                 setAbstract(e.target.value.trim());
               }}
             ></textarea>
@@ -310,6 +315,7 @@ export default function CreateProject() {
               {!showGroupProject ? (
                 <>
                   <button
+                    data-testid="group-btn"
                     onClick={() => {
                       setShowGroupProject((preState) => !preState);
                     }}
@@ -325,6 +331,7 @@ export default function CreateProject() {
                 <div className="p-3">
                   <div className="p-3">
                     <input
+                      data-testid="extra-email"
                       type="email"
                       className="px-8  w-full border rounded py-2 text-gray-700 focus:outline-none focus:outline-blue-600 items-center"
                       placeholder="Enter Team Mate no 1 Email Id"
@@ -336,6 +343,7 @@ export default function CreateProject() {
                   </div>
                   <div className="p-3">
                     <input
+                      data-testid="extra-email"
                       className="px-8  w-full border rounded py-2 text-gray-700 focus:outline-none focus:outline-blue-600 items-center"
                       type="email"
                       placeholder="Enter Team Mate no 2 Email Id"
@@ -346,6 +354,7 @@ export default function CreateProject() {
                   </div>
                   <div className="p-3">
                     <input
+                      data-testid="extra-email"
                       className="px-8  w-full border rounded py-2 text-gray-700 focus:outline-none focus:outline-blue-600 items-center"
                       type="email"
                       placeholder="Enter Team Mate no 3 Email Id"
@@ -356,6 +365,7 @@ export default function CreateProject() {
                   </div>
                   <div className="p-3">
                     <input
+                      data-testid="extra-email"
                       className="px-8  w-full border rounded py-2 text-gray-700 focus:outline-none focus:outline-blue-600 items-center"
                       type="email"
                       placeholder="Enter Team Mate no 4 Email Id"
@@ -366,6 +376,7 @@ export default function CreateProject() {
                   </div>
                   <div className="p-3">
                     <input
+                      data-testid="extra-email"
                       className="px-8  w-full border rounded py-2 text-gray-700 focus:outline-none focus:outline-blue-600 items-center"
                       type="email"
                       placeholder="Enter Team Mate no 5 Email Id"
@@ -376,6 +387,7 @@ export default function CreateProject() {
                   </div>
                   <div className="p-3">
                     <button
+                      data-testid="back-btn"
                       onClick={() => {
                         setShowGroupProject((preState) => !preState);
                       }}

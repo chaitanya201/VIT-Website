@@ -3,21 +3,25 @@ import React, { useEffect, useState } from "react";
 
 export default function Search({ setProjects, setAlertMsg, setAlertColor }) {
   const BASE_URL = "http://localhost:5000/";
-  const delay = 300;
+  const delay = 1000;
   const [query, setQuery] = useState("");
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
+      if(query.trim() === "") return
       try {
         const response = await axios.get(
           BASE_URL + "teacher/search?query=" + query.trim()
         );
+        console.log("res = ", response.data.projects)
         if (response.data.status === "success")
           return setProjects(response.data.projects);
-        setAlertColor("red");
-        setAlertMsg(response.data.msg);
+        // setAlertColor("red");
+        // setAlertMsg(response.data.msg);
       } catch (error) {
-        setAlertColor("red");
-        setAlertMsg("Server Error. Try again later.");
+        console.log("error ");
+        console.log(error)
+        // setAlertColor("red");
+        // setAlertMsg("Server Error. Try again later.");
       }
     }, delay);
     getProjects();

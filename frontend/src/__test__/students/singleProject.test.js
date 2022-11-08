@@ -93,6 +93,17 @@ const data = {
   __v: 0,
 };
 
+test("should display single project page on /show-single-project path", () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <ShowSingleProject />
+      </BrowserRouter>
+    </Provider>
+  );
+  expect(screen.getByTestId("error")).toBeInTheDocument();
+});
+
 test("should display warning saying follow proper steps", () => {
   render(
     <Provider store={store}>
@@ -106,8 +117,7 @@ test("should display warning saying follow proper steps", () => {
 });
 
 test("should display single project with the provided content on the page.", async () => {
-
-    // find a way to add data in location object. Then only this test will run.
+  // find a way to add data in location object. Then only this test will run.
 
   console.log("location is before = ", window.location.pathname);
   window.history.pushState({ project: data }, "", "/show-single-project");

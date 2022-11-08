@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import AddTasks from "../../../components/Students/AddTasks";
-import store from "../../../store/store";
+import AddTasks from "../../components/Students/AddTasks";
+import store from "../../store/store";
 import {
   fireEvent,
   getByText,
@@ -11,6 +11,7 @@ import {
 } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { renderWithProviders } from "../utils/reduxStore";
 /**
   {
                 _id: "62a3306a883179e5fef9e247",
@@ -212,20 +213,19 @@ test("should display the table with the content", async () => {
     )
   );
   server.listen();
-  render(
-    <Provider store={store}>
-      <AddTasks />
-    </Provider>
-  );
+  renderWithProviders(<AddTasks/>)
 
   // for these cases it is not working
-  // await waitFor(() => screen.findByText(data.abstract));
+  // await waitFor(() => screen.findByText(data["abstract"]));
   // await waitFor(() => screen.findByText(data.branch));
   // await waitFor(() => screen.findByText(/data.comments/));
+  // await waitFor(() => screen.findByText(data["comments"]));
 
   // working for only these cases.
   await waitFor(() => screen.findByText(data["title"]));
-  await waitFor(() => screen.findByText(data.subject));
+  await waitFor(() => screen.findByText(data["subject"]));
+  // expect(await screen.findByText(`/${data.comments}/i`)).toBeInTheDocument()
+  expect(await screen.findByText(`/${data.adminRemark}/i`)).toBeInTheDocument()
   
 
   // with screen CAN NOT ACCESS ELEMENTS WHICH ARE OUTSIDE OF THE CURRENT COMPONENT, SO can not access nav bar in this component.

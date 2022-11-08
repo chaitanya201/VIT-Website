@@ -287,7 +287,7 @@ export default function ShowSingleProject() {
     },
   ];
   return (
-    <>
+    <div data-testid='showSingleProject'>
       <div>
         {alertMsg ? (
           <ClosingAlert msg={alertMsg} alertColor={alertColor}></ClosingAlert>
@@ -532,6 +532,6 @@ export default function ShowSingleProject() {
           </form>
         </div>
       </div> */}
-    </>
+    </div>
   );
 }
