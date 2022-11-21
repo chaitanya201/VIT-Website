@@ -5,7 +5,7 @@ import DeadStock from "../Images/Dead Stock.jpeg";
 import ProjectManagement from "../Images/Project Management.jpeg";
 import Teacher from "../Images/teacher.jpeg";
 import Background from "../Images/background.jpg";
-import Search from "./Teachers/Search";
+// import Search from "./Teachers/Search";
 
 export default function Home() {
   const [nav, setNav] = useState(true);
@@ -15,7 +15,6 @@ export default function Home() {
   };
   return (
     <div>
-    <Search />
       <div className="flex justify-between" data-testid = "home-component">
         <div className="justify-between   ">
           <ul className=" hidden w-full md:flex bg-purple-500 justify-between ">

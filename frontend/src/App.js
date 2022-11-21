@@ -17,6 +17,8 @@ import TeacherRegister from "./components/TeacherAuth/Register";
 import AdminRegister from "./components/Admin/Auth/Registration";
 import AdminLogin from "./components/Admin/Auth/Login";
 import Spinner from "./components/helper/Spinner";
+import Search from "./components/Teachers/Search";
+import ShowSearchedProject from "./components/Teachers/ShowSearchedProject";
 
 // lazy import always should be at the bottom of normal imports. If any normal import is below lazy import 
 // then it throws error saying move normal import to top.
@@ -408,6 +410,28 @@ function App() {
               element={
                 user && user.position === "teacher" ? (
                   <MidSemMarks />
+                ) : (
+                  <TeacherLogin />
+                )
+              }
+            ></Route>
+
+            <Route
+              path="search"
+              element={
+                user && user.position === "teacher" ? (
+                  <Search />
+                ) : (
+                  <TeacherLogin />
+                )
+              }
+            ></Route>
+
+            <Route
+              path="searched-project"
+              element={
+                user && user.position === "teacher" ? (
+                  <ShowSearchedProject />
                 ) : (
                   <TeacherLogin />
                 )

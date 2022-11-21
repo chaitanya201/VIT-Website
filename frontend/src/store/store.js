@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import adminSelectQuery from "./reducers/adminSelectQuery";
+import searchedProject from "./reducers/searchedProject";
 import stateChanged from "./reducers/stateChanged";
 import studentSelectQuery from "./reducers/studentSelectQuery";
 import teacherSelectQuery from "./reducers/teacherSelectQuery";
@@ -11,6 +12,7 @@ export default configureStore({
     adminSelectQuery: adminSelectQuery,
     teacherSelectQuery: teacherSelectQuery,
     stateChanged : stateChanged,
-    user : user
+    user : user,
+    searchedProject: searchedProject
   },
 });

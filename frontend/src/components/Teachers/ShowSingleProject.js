@@ -59,8 +59,7 @@ export default function ShowSingleProject() {
     "Access-Control-Allow-Origin": "*",
   };
   const [marks, setMarks] = useState("");
-  const url = 'http://localhost:5000'
-
+  const url = "http://localhost:5000";
 
   if (!project) {
     return (
@@ -94,9 +93,7 @@ export default function ShowSingleProject() {
     const newProject = { title, abstract, projectId: project._id };
     try {
       const response = await axios.patch(
-        `${url}/projects/update-project?teacherId=${
-          user ? user._id : "12"
-        }`,
+        `${url}/projects/update-project?teacherId=${user ? user._id : "12"}`,
         newProject,
         { headers }
       );
