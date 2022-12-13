@@ -90,7 +90,7 @@ const registration = async (req, res) => {
     pic: req.file ? req.file.filename : "dummy image 4.png",
   });
 
-  teacher.save((err) => {
+  await teacher.save((err) => {
     if (err) {
       // console("err while saving teacher");
       return res.send({
